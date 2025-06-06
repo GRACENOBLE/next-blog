@@ -4,6 +4,7 @@ import { GetBlogPostBySlug } from "@/server";
 import { useQuery } from "@tanstack/react-query";
 import Container from "./common/container";
 import Image from "next/image";
+import { TailSpin } from "react-loader-spinner";
 
 const BlogPostDetails = ({ slug }: { slug: string }) => {
   const query = useQuery({
@@ -11,7 +12,22 @@ const BlogPostDetails = ({ slug }: { slug: string }) => {
     queryFn: () => GetBlogPostBySlug(slug),
   });
   if (query.isLoading) {
-    return <Container>Loading....</Container>;
+    return (
+      <Container>
+        <div className="grid place-items-center min-h-screen pb-20 w-full col-span-3">
+          <TailSpin
+            visible={true}
+            height="80"
+            width="80"
+            color="black"
+            ariaLabel="tail-spin-loading"
+            radius="1"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      </Container>
+    );
   }
   return (
     <Container className="pt-8">

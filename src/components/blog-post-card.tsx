@@ -57,7 +57,7 @@ const BlogPostCard = ({
       <Button
         variant="ghost"
         size="icon"
-        className="absolute z-10 top-2 right-2 text-muted-foreground"
+        className="absolute top-2 right-2 text-muted-foreground"
         onClick={() => mutation.mutate()}
         disabled={mutation.isPending}
         aria-label={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}

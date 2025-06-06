@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "@/components/common/container";
 import Image from "next/image";
 import Modal from "@/components/modal";
+import { TailSpin } from "react-loader-spinner";
 
 const BlogPostDetails = async ({
   params,
@@ -15,7 +16,20 @@ const BlogPostDetails = async ({
   return (
     <Modal>
       {!blogData ? (
-        <Container>Loading....</Container>
+        <Container className=" ">
+          <div className="grid place-items-center min-h-screen pb-20 w-full col-span-3">
+            <TailSpin
+              visible={true}
+              height="80"
+              width="80"
+              color="black"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        </Container>
       ) : (
         <div className="max-w-4xl mx-auto  bg-white">
           <Image
