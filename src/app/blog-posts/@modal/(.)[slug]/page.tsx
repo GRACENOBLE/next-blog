@@ -41,8 +41,8 @@ const BlogPostDetails = async ({
               {blogData.content
                 ?.split(".")
                 .filter((instance) => instance.length !== 0)
-                .map((sentence) => (
-                  <li>{sentence}</li>
+                .map((sentence, index) => (
+                  <li key={index}>{sentence}</li>
                 ))}
             </ul>
           </div>

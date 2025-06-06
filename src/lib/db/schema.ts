@@ -1,12 +1,12 @@
 import { sql } from "drizzle-orm";
 import {
-  integer,
   pgTable,
   varchar,
   text,
   timestamp,
   uuid,
   index,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const blogPosts = pgTable("blog_posts", {
@@ -14,8 +14,9 @@ export const blogPosts = pgTable("blog_posts", {
     .primaryKey()
     .default(sql`gen_random_uuid()`),
   title: varchar("title", { length: 255 }).notNull(),
-  image: varchar("image", {length: 255}).notNull().default(""),
+  image: varchar("image", { length: 255 }).notNull().default(""),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
+  bookmarked: boolean("bookmarked").notNull().default(false),
   created_at: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

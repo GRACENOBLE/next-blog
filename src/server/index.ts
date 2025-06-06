@@ -33,3 +33,50 @@ export const GetBlogPostBySlug = async (slug: string) => {
     throw new Error("Failed to fetch Blog post by slug");
   }
 };
+
+export const AddToBookmarked = async(slug: string) => {
+  try {
+    const post = await db
+      .select()
+      .from(blogPosts)
+      .where(eq(blogPosts.slug, slug))
+      .then((res) => (res && res.length > 0 ? res[0] : null));
+
+    if (!post) {
+      throw new Error("Post not found");
+    }
+
+    // Assuming you have a 'bookmarked' column in blogPosts table
+    await db
+      .update(blogPosts)
+      .set({ bookmarked: true })
+      .where(eq(blogPosts.slug, slug));
+
+    return { success: true, message: "Post bookmarked successfully" };
+  } catch (error) {
+    throw new Error("Failed to bookmark post");
+  }
+}
+
+export const RemoveFromBookmarked = async (slug: string) => {
+  try {
+    const post = await db
+      .select()
+      .from(blogPosts)
+      .where(eq(blogPosts.slug, slug))
+      .then((res) => (res && res.length > 0 ? res[0] : null));
+
+    if (!post) {
+      throw new Error("Post not found");
+    }
+
+    await db
+      .update(blogPosts)
+      .set({ bookmarked: false })
+      .where(eq(blogPosts.slug, slug));
+
+    return { success: true, message: "Post removed from bookmarks successfully" };
+  } catch (error) {
+    throw new Error("Failed to remove post from bookmarks");
+  }
+};
