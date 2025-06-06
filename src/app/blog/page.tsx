@@ -3,9 +3,11 @@ import Container from "@/components/common/container";
 
 const page = () => {
   return (
-    <Container>
-      <BlogPostsGrid />
-    </Container>
+    <section className="bg-muted min-h-screen">
+      <Container>
+        <BlogPostsGrid />
+      </Container>
+    </section>
   );
 };
 

@@ -13,7 +13,8 @@ const Header = () => {
         <div className="flex items-center gap-20">
           <div>
             {[
-              { href: "/blog-posts", label: "Blog" },
+              { href: "/blog", label: "Blog" },
+              { href: "/blog-posts", label: "Clever Blog" },
               { href: "/bookmarks", label: "Bookmarks" },
             ].map(({ href, label }) => (
               <Link
