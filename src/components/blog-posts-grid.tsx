@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { usePathname } from "next/navigation";
 import BlogPostCard from "./blog-post-card";
+import { TailSpin } from "react-loader-spinner";
 
 const BlogPostsGrid = () => {
   const pathname = usePathname();
@@ -18,7 +19,18 @@ const BlogPostsGrid = () => {
     <section className="py-8 bg-muted min-h-screen">
       <Container className="grid grid-cols-3 gap-8">
         {query.isLoading ? (
-          <div>Loading...</div>
+          <div className="grid place-items-center min-h-screen pb-20 w-full col-span-3">
+            <TailSpin
+              visible={true}
+              height="80"
+              width="80"
+              color="black"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
         ) : (
           query.data
             ?.filter((post) =>

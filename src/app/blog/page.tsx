@@ -5,8 +5,9 @@ const page = () => {
   return (
     <section className="bg-muted min-h-screen">
       <Container>
-        <BlogPostsGrid />
+        <h2 className="text-2xl font-semibold pt-10">Blog</h2>
       </Container>
+      <BlogPostsGrid />
     </section>
   );
 };
