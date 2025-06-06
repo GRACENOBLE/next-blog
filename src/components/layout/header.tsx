@@ -10,12 +10,26 @@ const Header = () => {
         <Link href={"/"} className="text-2xl font-semibold">
           Next Blog
         </Link>
-        <Link
-          href={"/bookmarks"}
-          className={buttonVariants({ variant: "ghost" })}
-        >
-          Bookmarks
-        </Link>
+        <div className="flex items-center gap-20">
+          <div>
+            {[
+              { href: "/blog-posts", label: "Blog" },
+              { href: "/bookmarks", label: "Bookmarks" },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={cn(
+                  " min-w-28",
+                  buttonVariants({ variant: "ghost" })
+                )}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+          <div className="aspect-square p-2 bg-muted rounded-full">GN</div>
+        </div>
       </Container>
     </header>
   );
